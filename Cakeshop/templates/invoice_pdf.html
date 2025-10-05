@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Invoice - {{ order.id }}</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .invoice-box { max-width: 800px; margin: auto; padding: 30px; border: 1px solid #eee; box-shadow: 0 0 10px rgba(0, 0, 0, .15); font-size: 16px; line-height: 24px; color: #555; }
+        .invoice-box table { width: 100%; line-height: inherit; text-align: left; border-collapse: collapse; }
+        .item-table th, .item-table td { border-bottom: 1px solid #eee; padding: 8px; }
+        .total-row td { border-top: 2px solid #eee; font-weight: bold; }
+        .header h1 { color: #333; }
+    </style>
+</head>
+<body>
+    <div class="invoice-box">
+        <div class="header">
+            <h1>Cake Shop Invoice</h1>
+            <p>Invoice #: {{ order.id }}</p>
+            <p>Date: {{ order.created_at|date:"F d, Y" }}</p>
+        </div>
+
+        <table>
+            <tr>
+                <td style="width: 50%;">
+                    <strong>Billed To:</strong><br>
+                    {{ order.user.get_full_name|default:order.user.username }}<br>
+                    {{ order.address }}
+                </td>
+                <td style="width: 50%;">
+                    <strong>Payment Method:</strong><br>
+                    Cash on Delivery (COD) <br>
+                    Payment Status: Pending
+                </td>
+            </tr>
+        </table>
+        <br>
+        
+        <table class="item-table">
+            <thead>
+                <tr>
+                    <th style="width: 50%;">Item</th>
+                    <th style="width: 15%;">Price</th>
+                    <th style="width: 15%;">Qty</th>
+                    <th style="width: 20%; text-align: right;">Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in order_items %}
+                <tr>
+                    <td>{{ item.product.name }}</td>
+                    <td>${{ item.price }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td style="text-align: right;">${{ item.get_subtotal }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4">No items found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <table style="margin-top: 20px;">
+            <tr class="total-row">
+                <td style="width: 80%; text-align: right;">Total Due:</td>
+                <td style="width: 20%; text-align: right;">${{ order.total_amount }}</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

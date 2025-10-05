@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}Your Cart{% endblock %}
+
+{% block content %}
+
+<div class="container my-5">
+  <h2>Your Cart</h2>
+
+  {% if cart_items %}
+    <div class="list-group"> {# Main container for the cart items #}
+      {% for item in cart_items %}
+      <div class="list-group-item d-flex align-items-center mb-4 p-4 border rounded shadow-sm">
+        
+        {# 1. Product Image (Increased Size) #}
+        <div class="me-4 flex-shrink-0">
+          {% if item.cake.cake_image %}
+            <img src="{{ item.cake.cake_image.url }}" alt="{{ item.cake.name }}" 
+                 class="img-fluid rounded" style="width: 180px; height: 180px; object-fit: cover;"> {# Image size is now 180x180 #}
+          {% else %}
+            <div class="d-flex align-items-center justify-content-center bg-light text-muted rounded border" 
+                 style="width: 180px; height: 180px;">
+              No Image
+            </div>
+          {% endif %}
+        </div>
+
+        {# 2. Product Details (Name, Description, Category, Veg/Non-Veg) #}
+        <div class="flex-grow-1 me-4">
+          <h4 class="mb-1 fw-bold">{{ item.cake.name }}</h4>
+          <p class="text-muted mb-3">{{ item.cake.description|truncatechars:150 }}</p>
+          
+          {# Badges for extra info #}
+          <div class="d-flex align-items-center mb-2">
+            <span class="badge bg-info text-dark">{{ item.cake.category }}</span> 
+            <span class="badge bg-{% if item.cake.veg_nonveg == 'veg' %}success{% else %}danger{% endif %} ms-2">
+              <i class="fas fa-dot-circle"></i> {{ item.cake.get_veg_nonveg_display }}
+            </span>
+          </div>
+
+          {# Unit Price #}
+          <p class="mb-0 text-secondary">Unit Price: <span class="fw-bold">₹{{ item.cake.price|floatformat:2 }}</span></p>
+        </div>
+
+        {# 3. Quantity Controls & Item Total #}
+        <div class="d-flex flex-column align-items-center me-4 border-start ps-4">
+          <label class="form-label mb-1 fw-bold text-nowrap">Quantity</label>
+          <div class="input-group input-group-sm mb-3" style="width: 120px;">
+            <a href="{% url 'decrease_quantity' item.id %}" class="btn btn-outline-secondary">-</a>
+            <input type="text" class="form-control text-center bg-white" value="{{ item.quantity }}" readonly>
+            <a href="{% url 'increase_quantity' item.id %}" class="btn btn-outline-secondary">+</a>
+          </div>
+          
+          <p class="mb-0 text-nowrap">Subtotal:</p>
+          <h5 class="text-success fw-bold text-nowrap">₹{{ item.item_total|floatformat:2 }}</h5>
+        </div>
+
+        {# 4. Action Button #}
+        <div class="ms-3">
+          <a href="{% url 'remove_from_cart' item.id %}" class="btn btn-outline-danger">Remove</a>
+        </div>
+
+      </div>
+      {% endfor %}
+    </div>
+
+    <hr class="my-5">
+
+    {# Grand Total and Checkout Button #}
+    <div class="d-flex justify-content-end align-items-center">
+        <h3 class="me-4 mb-0">Grand Total: <span class="text-dark fw-bold">₹{{ total|floatformat:2 }}</span></h3>
+        <a href="{% url 'checkout' %}" class="btn btn-lg btn-success">Proceed to Checkout</a>
+    </div>
+
+  {% else %}
+    <div class="alert alert-info text-center" role="alert">
+      Your cart is empty. <a href="{% url 'home' %}">Start shopping!</a>
+    </div>
+  {% endif %}
+
+</div>
+{% endblock %}

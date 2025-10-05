@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Cake Shop{% endblock %}
+
+{% block content %}
+<div class="container-fluid bg-dark bg-gradient">
+    <div class="row " style="min-height: 600px;">
+        <div class="col-md-12">
+            <div class="container-sm" style="height: 500px;overflow: hidden;">
+                <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel"
+                    style="height: 500px;">
+                        <div class=" carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="../static/cakeapp/img4.jpg" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../static/cakeapp/img2.jpg" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../static/cakeapp/img3.jpg" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="col">
+        <div class="container ">
+            <!-- Feedback / Growth Section -->
+            <div class="row py-5 text-light">
+                <div class="col-md-12 text-center">
+                    <h2 class="mb-4">What Our Customers Say</h2>
+                    <p class="text-light">Over the last 1 year, we’ve been grateful to serve thousands of happy
+                        customers with our fresh, delightful cakes. Here’s what they feel about us:</p>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card shadow-sm border-0 p-3">
+                        <p>“The best cake shop in town! Ordered a Red Velvet for my sister’s birthday and it was
+                            heavenly.”</p>
+                        <h6 class="text-end text-muted">– Priya K.</h6>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card shadow-sm border-0 p-3">
+                        <p>“CakeZone never disappoints. Their delivery is on time and the taste is always amazing.”
+                        </p>
+                        <h6 class="text-end text-muted">– Rohit S.</h6>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card shadow-sm border-0 p-3">
+                        <p>“Loved the customized chocolate cake! Everyone at the party asked where it was from.”</p>
+                        <h6 class="text-end text-muted">– Neha M.</h6>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Section -->
+            <div class="row bg-dark text-light py-5 text-center">
+                <div class="col-md-3">
+                    <h3>10,000+</h3>
+                    <p>Happy Customers</p>
+                </div>
+                <div class="col-md-3">
+                    <h3>500+</h3>
+                    <p>Events Celebrated</p>
+                </div>
+                <div class="col-md-3">
+                    <h3>20+</h3>
+                    <p>Unique Flavours</p>
+                </div>
+                <div class="col-md-3">
+                    <h3>4.9/5</h3>
+                    <p>Average Rating</p>
+                </div>
+            </div>
+            <div class="row bg-dark text-light py-5">
+                <div class="col-md-6 offset-md-3">
+                    <h3 class="text-center mb-4">Customer Satisfaction (2024)</h3>
+                    <div class="mb-3">
+                        <label>Quality & Taste</label>
+                        <div class="progress">
+                            <div class="progress-bar bg-success" style="width: 95%;">95%</div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label>On-time Delivery</label>
+                        <div class="progress">
+                            <div class="progress-bar bg-info" style="width: 90%;">90%</div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label>Customer Support</label>
+                        <div class="progress">
+                            <div class="progress-bar bg-warning" style="width: 85%;">85%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row py-5 text-center text-light">
+                <h2>Be part of our sweet journey!</h2>
+                <p>Join thousands of happy customers and make your celebrations unforgettable.</p>
+                <a href="/app/contact" class="btn btn-outline-light btn-lg mt-3">Order Now</a>
+            </div>
+
+
+            <div class="row bg-light py-5 text-center">
+                <h2 class="mb-4">Our Journey in 1 Year</h2>
+                <div class="col-md-4">
+                    <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" width="60">
+                    <h4>5000+ Orders</h4>
+                    <p>Delivered fresh cakes across the city</p>
+                </div>
+                <div class="col-md-4">
+                    <img src="https://cdn-icons-png.flaticon.com/512/477/477406.png" width="60">
+                    <h4>Top Rated</h4>
+                    <p>4.5/5 average customer rating</p>
+                </div>
+                <div class="col-md-4">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1046/1046874.png" width="60">
+                    <h4>20+ Flavours</h4>
+                    <p>Unique flavours introduced last year</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

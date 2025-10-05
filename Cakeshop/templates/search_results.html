@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}Search Results for "{{ query }}"{% endblock %}
+
+{% block content %}
+
+<h2>Search Results</h2>
+<hr>
+
+{# 1. Display the search query and the total count #}
+{% if query %}
+<p class="lead">
+    Results for: <strong>"{{ query }}"</strong>
+    <span class="badge bg-secondary">{{ results.count }} found</span>
+</p>
+{% endif %}
+
+{# 2. Display the search form again for easy new searches #}
+<!-- <form class="d-flex mb-4" method="GET" action="{% url 'search_view_name' %}">
+    <input class="form-control me-2" type="search" placeholder="Search again..." aria-label="Search" name="q"
+        value="{{ query|default:'' }}">
+    <button class="btn btn-outline-success" type="submit">Search</button>
+</form> -->
+
+<hr>
+
+{# 3. Loop through the results or show a "No results" message #}
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for item in results %}
+    <div class="col">
+        <div class="card h-100">
+            {# Use the actual image field name: cake_image #}
+            {% if item.cake_image %}
+            <img src="{{ item.cake_image.url }}" class="card-img-top" alt="{{ item.name }}"
+                style="height: 200px; object-fit: cover;">
+            {% else %}
+            <img src="/static/images/default_cake.png" class="card-img-top" alt="No image"
+                style="height: 200px; object-fit: cover;">
+            {% endif %}
+
+            <div class="card-body">
+                {# Use the actual name field #}
+                <h5 class="card-title">{{ item.name }} <span class="badge bg-{% if item.veg_nonveg == 'veg' %}success{% else %}danger{% endif %}">{{item.veg_nonveg }}</span></h5>
+
+                {# Use the actual description field and truncate it #}
+                <p class="card-text">{{ item.description|truncatechars:100 }}</p>
+
+                {# Optional: Link to a detail page (assuming you have one) #}
+                <a href="{% url 'cakebtn' item.id %}" class="btn btn-primary">View Details</a>
+            </div>
+            <div class="card-footer">
+                {# Use the actual price field #}
+                <h5 class="text-muted">Price: ₹{{ item.price }}</h5>
+
+                {# Use the actual veg_nonveg field #}
+                
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    {# Content to display if the 'results' list is empty #}
+    <div class="col-12">
+        {% if query %}
+        <div class="alert alert-warning" role="alert">
+            Sorry, we couldn't find any results matching **"{{ query }}"**.
+        </div>
+        {% else %}
+         <div class="alert alert-warning" role="alert">
+            Please don't keep the searches empty, try to fill that and enjoy delicious cakes
+        </div>   
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

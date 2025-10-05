@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Cake Shop{% endblock %}
+
+{% block content %}
+<main class="py-5 py-lg-5">
+        <div class="container px-4 px-sm-6 px-lg-8">
+            <div class="text-center mb-5">
+                <h1 class="text-uppercase fw-semibold text-pink small">Get in Touch</h1>
+                <p class="mt-2 display-5 fw-bolder text-dark">
+                    We're Ready to Help!
+                </p>
+                <p class="mt-3 fs-5 text-secondary mx-auto col-lg-8">
+                    Whether you have a custom order request, a question about ingredients, or just want to say hello, we look forward to hearing from you.
+                </p>
+            </div>
+
+            <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+                <div class="row g-0">
+                    
+                    <div class="col-lg-6 p-4 p-sm-5 p-lg-5 hover-scale">
+                        <h2 class="h3 fw-bold text-dark mb-4">Send Us a Message</h2>
+                        <form id="contactForm" onsubmit="handleFormSubmit(event)" class="needs-validation" novalidate>
+                            
+                            <div class="mb-3">
+                                <label for="name" class="form-label fw-medium text-dark">Full Name</label>
+                                <input type="text" name="name" id="name" class="form-control form-control-lg rounded-3" required>
+                                <div class="invalid-feedback">Please enter your name.</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="email" class="form-label fw-medium text-dark">Email Address</label>
+                                <input type="email" name="email" id="email" class="form-control form-control-lg rounded-3" required>
+                                <div class="invalid-feedback">Please enter a valid email address.</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="subject" class="form-label fw-medium text-dark">Subject / Order Type</label>
+                                <input type="text" name="subject" id="subject" class="form-control form-control-lg rounded-3" required>
+                                <div class="invalid-feedback">Please enter a subject.</div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="message" class="form-label fw-medium text-dark">Your Message</label>
+                                <textarea id="message" name="message" rows="4" class="form-control rounded-3" required></textarea>
+                                <div class="invalid-feedback">Please enter your message.</div>
+                            </div>
+
+                            <div id="statusMessage" class="text-center fw-medium mt-3 alert alert-success d-none" role="alert"></div>
+
+                            <button type="submit" 
+                                class="btn btn-pink btn-lg w-100 rounded-3 shadow-sm transition duration-300">
+                                Submit Request
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="col-lg-6 p-4 p-sm-5 p-lg-5 bg-pink-light d-flex flex-column justify-content-between hover-scale">
+                        <div>
+                            <h2 class="h3 fw-bold text-pink mb-4">Our Information</h2>
+                            
+                            <div class="d-grid gap-4">
+                                <div class="d-flex">
+                                    <svg class="flex-shrink-0 me-3 mt-1 text-pink" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                    <div>
+                                        <h3 class="fs-5 fw-medium text-pink">Visit Our Shop</h3>
+                                        <p class="mb-0 text-dark">123 Cake Lane, Sweet City, CA 90210</p>
+                                        <p class="mb-0 text-dark">Mon - Sat: 9:00 AM - 5:00 PM</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="d-flex">
+                                    <svg class="flex-shrink-0 me-3 mt-1 text-pink" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                                    <div>
+                                        <h3 class="fs-5 fw-medium text-pink">Email Us</h3>
+                                        <p class="mb-0 text-dark"><a href="mailto:orders@artisanbakery.com" class="text-dark text-decoration-none hover-link-pink">orders@artisanbakery.com</a></p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex">
+                                    <svg class="flex-shrink-0 me-3 mt-1 text-pink" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6.7-6.7A19.79 19.79 0 012.08 4.18a2 2 0 012-2.18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                                    <div>
+                                        <h3 class="fs-5 fw-medium text-pink">Call Us</h3>
+                                        <p class="mb-0 text-dark"><a href="tel:+15551234567" class="text-dark text-decoration-none hover-link-pink">(555) 123-4567</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-5">
+                            <h3 class="fs-5 fw-medium text-pink mb-2">Our Location</h3>
+                            <div class="p-4 bg-white rounded-3 shadow-sm border border-pink text-center" style="height: 12rem;">
+                                <p class="text-pink fw-semibold m-0">Map Placeholder</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{%endblock%}

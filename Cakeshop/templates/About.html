@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Cake Shop{% endblock %}
+
+{% block content %}
+<main>
+        <!-- Hero Section (Jumbotron style) -->
+        <section class="py-5 py-md-5 bg-pink-light overflow-hidden">
+            <div class="container px-4 px-sm-6 px-lg-8 text-center">
+                <h1 class="display-3 fw-bolder text-dark">
+                    Our Story: Crafting Moments, One Cake at a Time
+                </h1>
+                <p class="mt-4 fs-5 text-secondary mx-auto col-lg-8">
+                    We believe that the best cakes are made with passion, high-quality ingredients, and a commitment to artistry. Learn about the journey that brought us here.
+                </p>
+            </div>
+        </section>
+
+        <!-- The Story Section -->
+        <section class="py-5 py-md-5 bg-white">
+            <div class="container px-4 px-sm-6 px-lg-8">
+                <div class="row align-items-center g-5">
+                    <div class="col-lg-6">
+                        <h2 class="display-6 fw-bold text-pink">
+                            From Humble Beginnings to Culinary Excellence
+                        </h2>
+                        <p class="mt-4 lead text-secondary">
+                            Our founder, Clara, started baking in her small kitchen in 2010 with a single goal: to share the joy of truly exceptional, homemade treats. That passion quickly grew into Artisan Bakery, a recognized name for bespoke wedding cakes and daily delights. 
+                        </p>
+                        <p class="mt-3 lead text-secondary">
+                            We never compromise on quality, using only locally sourced, natural ingredients and time-honored techniques. Every item on our menu is a labor of love, designed not just to taste good, but to create lasting memories.
+                        </p>
+                    </div>
+                    <div class="col-lg-6">
+                        <!-- Placeholder Image with shadow and rounded corners -->
+                        <img class="img-fluid rounded-4 shadow-lg hover-scale" 
+                             src="/static/cakeapp/kitchen.jpg" 
+                             alt="Picture representing the history of the bakery" style="object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mission and Values Section -->
+        <section class="py-5 py-md-5 bg-pink-light">
+            <div class="container px-4 px-sm-6 px-lg-8">
+                <div class="text-center mb-5">
+                    <h2 class="text-uppercase text-pink fw-semibold small">Our Core Beliefs</h2>
+                    <p class="mt-2 display-6 fw-bolder text-dark">
+                        What Drives Our Dedication
+                    </p>
+                </div>
+                
+                <div class="row g-4 mt-4">
+                    <!-- Value 1 -->
+                    <div class="col-md-4">
+                        <div class="card border-0 rounded-4 shadow h-100 text-center p-4 hover-scale">
+                            <div class="card-body">
+                                <svg class="text-pink mb-3" width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+                                </svg>
+                                <h5 class="card-title fw-bold text-dark">Unwavering Quality</h5>
+                                <p class="card-text text-secondary">
+                                    We use the finest ingredients—organic butter, free-range eggs, and gourmet cocoa—to ensure every bite is perfection.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Value 2 -->
+                    <div class="col-md-4">
+                        <div class="card border-0 rounded-4 shadow h-100 text-center p-4 hover-scale">
+                            <div class="card-body">
+                                <svg class="text-pink mb-3" width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                </svg>
+                                <h5 class="card-title fw-bold text-dark">Artisan Craftsmanship</h5>
+                                <p class="card-text text-secondary">
+                                    Each cake is handcrafted by skilled decorators, turning every order into a unique piece of edible art.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Value 3 -->
+                    <div class="col-md-4">
+                        <div class="card border-0 rounded-4 shadow h-100 text-center p-4 hover-scale">
+                            <div class="card-body">
+                                <svg class="text-pink mb-3" width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                </svg>
+                                <h5 class="card-title fw-bold text-dark">Customer Delight</h5>
+                                <p class="card-text text-secondary">
+                                    Our success is measured by the happiness of our customers. We strive to exceed expectations with every interaction.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="py-5 py-md-5 bg-white">
+            <div class="container px-4 px-sm-6 px-lg-8 text-center">
+                <h2 class="text-uppercase text-pink fw-semibold small">The People Behind the Flour</h2>
+                <p class="mt-2 display-6 fw-bolder text-dark mb-5">
+                    Meet Our Dedicated Team
+                </p>
+                <div class="row g-4 justify-content-center">
+                    
+                    <!-- Team Member 1 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card border-0 rounded-4 shadow p-4 hover-scale">
+                            <img class="mx-auto d-block rounded-circle object-cover mb-4 shadow-sm" 
+                                 src="/static/cakeapp/2.jpeg" 
+                                 alt="Clara Mitchell, Founder" style="width: 150px; height: 150px;">
+                            <h3 class="h4 fw-bold text-dark">Clara Mitchell</h3>
+                            <p class="text-pink fw-medium mt-1 mb-2">Founder & Head Pastry Chef</p>
+                            <p class="text-secondary small">
+                                Clara leads our team with an inspiring blend of creativity and dedication to traditional baking excellence.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Team Member 2 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card border-0 rounded-4 shadow p-4 hover-scale">
+                            <img class="mx-auto d-block rounded-circle object-cover mb-4 shadow-sm" 
+                                 src="/static/cakeapp/3.jpeg" 
+                                 alt="Alex Kim, Lead Decorator" style="width: 150px; height: 150px;">
+                            <h3 class="h4 fw-bold text-dark">Alex Kim</h3>
+                            <p class="text-pink fw-medium mt-1 mb-2">Lead Cake Decorator</p>
+                            <p class="text-secondary small">
+                                Alex is our visual wizard, transforming batter and frosting into stunning, custom-designed edible art pieces.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Team Member 3 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card border-0 rounded-4 shadow p-4 hover-scale">
+                            <img class="mx-auto d-block rounded-circle object-cover mb-4 shadow-sm" 
+                                 src="/static/cakeapp/images.jpeg" 
+                                 alt="Lena Garcia, Operations Manager" style="width: 150px; height: 150px;">
+                            <h3 class="h4 fw-bold text-dark">Lena Garcia</h3>
+                            <p class="text-pink fw-medium mt-1 mb-2">Operations Manager</p>
+                            <p class="text-secondary small">
+                                Lena ensures that every order, from the initial consultation to final delivery, is executed flawlessly and on time.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}

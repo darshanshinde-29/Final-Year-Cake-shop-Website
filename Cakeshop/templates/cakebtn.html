@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Cake Shop{% endblock %}
+
+{% block content %}
+
+<div class="row container m-5">
+
+    <div class="col-md-6">
+        <img src="{{ cake.cake_image.url }}" class="card-img-top" alt="{{ cake.name }}"
+            style="max-width: 400px; max-height: 400px; border-radius: 20px;" >
+    </div>
+    <div class="col-md-6">
+        <div class="container">
+            <h1>{{ cake.name }}</h1>
+            <h4 class="text-muted">₹{{ cake.price }}</h4>
+            <p>{{ cake.description }}</p>
+            <a class="btn btn-success" href="{% url 'add_to_cart' cake.id %}">Add to Cart</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

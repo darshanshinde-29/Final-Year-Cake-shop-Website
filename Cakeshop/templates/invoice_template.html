@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Invoice #{{ order.id }}</title>
+    <style>
+        /* Embed all necessary CSS styles here for offline PDF rendering */
+        @page { size: A4; margin: 1cm; }
+        body { font-family: sans-serif; font-size: 10pt; }
+        h1, h2, h3, h4, h5, h6 { font-family: serif; font-weight: bold; }
+        
+        .header { padding-bottom: 10px; margin-bottom: 20px; }
+        .header-left { float: left; width: 50%; }
+        .header-right { float: right; width: 50%; text-align: right; }
+        
+        .details-box { border: 1px solid #ccc; padding: 10px; margin-bottom: 20px; overflow: hidden; }
+        .details-col { float: left; width: 49%; }
+        
+        .items-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        .items-table th, .items-table td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        .items-table th { background-color: #f0f0f0; font-weight: bold; }
+        .items-table .text-right { text-align: right; }
+
+        .total-row { background-color: #f0f0f0; font-weight: bold; }
+        .total-section { float: right; width: 300px; margin-top: 20px; }
+        .total-section p { margin: 0; padding: 5px 0; border-top: 1px solid #000; }
+
+        .note { color: red; font-weight: bold; text-align: center; margin-top: 20px; }
+        .footer { text-align: center; font-size: 8pt; margin-top: 50px; }
+    </style>
+    </head>
+<body>
+
+    <div class="header">
+        <div class="header-left">
+            <h1 style="margin:0;">CakeZone</h1>
+            <p style="margin:0;">Opposite Neelkanth Society, Ghatkopar (East), Mumbai - 400075 </p>
+            <p style="margin:0;">Phone: +91 9473659033 | Email: cakezone999@gmail.com</p>
+        </div>
+        <div class="header-right">
+            <h2 style="font-size: 24pt; margin: 0;">INVOICE #{{ order.id }}</h2>
+            <p>Date: {{ order.created_at|date:"Y-m-d" }}</p>
+            <p style="font-weight: bold;">Payment Status: {{ order.payment_status|upper }}</p>
+        </div>
+    </div>
+    
+    <div class="details-box">
+        <div class="details-col" style="border-right: 1px solid #ccc; padding-right: 10px;">
+            <h4 style="margin-top:0;">BILLING/SHIPPING DETAILS</h4>
+            <p style="font-weight: bold; margin-bottom: 5px;">To: {{ order.full_name }}</p>
+            <p style="margin: 0;">Address: {{ order.address }}, {{ order.city }} - {{ order.zipcode }}</p>
+            <p style="margin: 0;">Phone: {{ order.phone }}</p>
+        </div>
+        <div class="details-col" style="padding-left: 10px;">
+            <h4 style="margin-top:0;">ORDER & PAYMENT</h4>
+            <p style="margin: 0;">Order ID: #{{ order.id }}</p>
+            <p style="margin: 0;">Order Date: {{ order.created_at|date:"Y-m-d H:i" }}</p>
+            <p style="margin: 0;">Order Status: {{ order.status }}</p>
+        </div>
+    </div>
+
+    <h3>ITEMS SUMMARY</h3>
+    <table class="items-table">
+        <thead>
+            <tr>
+                <th style="width: 55%;">Item Name</th>
+                <th style="width: 15%;" class="text-right">Unit Price</th>
+                <th style="width: 10%;" class="text-right">Qty</th>
+                <th style="width: 20%;" class="text-right">Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in order.items.all %}
+            <tr>
+                <td>{{ item.cake.name }}</td>
+                <td class="text-right">₹{{ item.price|floatformat:2 }}</td>
+                <td class="text-right">{{ item.quantity }}</td>
+                <td class="text-right">₹{{ item.get_item_total|floatformat:2 }}</td>
+            </tr>
+            {% endfor %}
+            
+            <tr class="total-row">
+                <td colspan="3" style="text-align: right;">ORDER TOTAL (Incl. all taxes):</td>
+                <td class="text-right">₹{{ order.total_amount|floatformat:2 }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    {% if order.payment_status == 'Unpaid' %}
+        <p class="note">
+            **PAYMENT DUE: ₹{{ order.total_amount|floatformat:2 }}** - This order is **Cash on Delivery** and payment is required upon receipt.
+        </p>
+    {% endif %}
+
+    <p class="footer">Thank you for choosing CakeZone! We hope you enjoy your delicious cake.</p>
+
+</body>
+</html>

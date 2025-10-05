@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}Your Orders - Cake Shop{% endblock %}
+
+{% block content %}
+
+<div class="container my-5">
+    <h1 class="mb-4">Your Orders</h1>
+
+    {% if orders %}
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th scope="col">Order ID</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Payment Status</th> {# NEW COLUMN #}
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                    <tr>
+                        <td class="fw-bold">#{{ order.id }}</td>
+                        <td>{{ order.created_at|date:"M d, Y" }}</td>
+                        <td>₹{{ order.total_amount|floatformat:2 }}</td>
+                        <td>
+                            {# Use different colors for clarity #}
+                            <span class="badge 
+                                {% if order.status == 'Delivered' %}bg-success{% elif order.status == 'Pending' %}bg-warning text-dark{% else %}bg-info{% endif %}">
+                                {{ order.status }}
+                            </span>
+                        </td>
+                        {# Payment Status Column #}
+                        <td>
+                            {% if order.status == 'Delivered' %}
+                                <span class="badge bg-success">Paid (COD)</span>
+                            {% else %}
+                                <span class="badge bg-danger">Unpaid (COD)</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{% url 'order_summary' order_id=order.id %}" class="btn btn-sm btn-outline-primary">
+                                View Summary
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div class="alert alert-info">
+            You haven't placed any orders yet. <a href="{% url 'home' %}" class="alert-link">Start shopping now!</a>
+        </div>
+    {% endif %}
+</div>
+
+{% endblock %}
