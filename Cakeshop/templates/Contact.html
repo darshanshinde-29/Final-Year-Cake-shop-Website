@@ -20,11 +20,13 @@
                     
                     <div class="col-lg-6 p-4 p-sm-5 p-lg-5 hover-scale">
                         <h2 class="h3 fw-bold text-dark mb-4">Send Us a Message</h2>
-                        <form id="contactForm" onsubmit="handleFormSubmit(event)" class="needs-validation" novalidate>
-                            
+                        <!-- <form id="contactForm"  class="needs-validation" action="{% url 'contact' %}" method="post"> -->
+                        <form id="contactForm"  class="needs-validation" novalidate>
+                            {% csrf_token %}
                             <div class="mb-3">
+                                <!-- <label for="name" class="form-label fw-medium text-dark">{{ form.fullname.label_tag }}</label> -->
                                 <label for="name" class="form-label fw-medium text-dark">Full Name</label>
-                                <input type="text" name="name" id="name" class="form-control form-control-lg rounded-3" required>
+                                <input type="text" name="name" id="fullname" class="form-control form-control-lg rounded-3" required>
                                 <div class="invalid-feedback">Please enter your name.</div>
                             </div>
 

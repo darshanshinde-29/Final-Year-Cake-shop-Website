@@ -20,3 +20,11 @@ class CustomUserCreationForm(UserCreationForm):
 class CheckoutForm(forms.Form):
     address = forms.CharField(widget=forms.Textarea)
     pincode = forms.CharField(widget=forms.Textarea)
+
+
+class ContactForm(forms.Form):
+    email = forms.EmailField(required=True, help_text="Required. Enter a valid email address.")
+
+    class Meta:
+        model = User
+        fields = ("fullname", "email", "subject", "message")

@@ -27,7 +27,7 @@ except AttributeError:
 
 
 from io import BytesIO
-from reportlab.pdfgen import canvas
+# from reportlab.pdfgen import canvas
 # from reportlab.lib.pagesizes import letter
 # from reportlab.lib.styles import getSampleStyleSheet
 # from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
@@ -70,7 +70,15 @@ def about(req):
 
 
 def contact(req):
-    return render(req, "Contact.html")
+
+    contactform = ContactForm(req.POST)
+    if req.method == "POST":
+        if contactform.is_valid():
+            contactform.save()
+            messages.success(req, "Account created successfully! You can now log in.")
+    else:
+        contactform = ContactForm()
+    return render(req, "Contact.html", {'form':contactform})
 
 
 def register(request):

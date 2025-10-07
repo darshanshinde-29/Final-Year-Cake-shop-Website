@@ -88,3 +88,13 @@ class OrderItem(models.Model):
 
     def __str__(self):
         return f"{self.cake.name} x {self.quantity}"
+    
+class Contact(models.Model):
+    fullname = models.CharField(max_length=200, default="")
+    email = models.CharField(max_length=200, default="")
+    subject = models.CharField(max_length=200, default="")
+    message = models.CharField(max_length=200, default="")
+
+    def __str__(self):
+        return f"{self.subject}"
+
